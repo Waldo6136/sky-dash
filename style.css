@@ -1,0 +1,180 @@
+/* ── RESET & BASE ───────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #0a0a1a;
+  --panel:    #0d0d2b;
+  --accent:   #00f0ff;
+  --accent2:  #ff4de3;
+  --text:     #e8e8ff;
+  --muted:    #6666aa;
+  --danger:   #ff4444;
+  --radius:   8px;
+  --ad-h:     60px;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── AD SLOTS ───────────────────────────────────── */
+.ad-slot {
+  width: 100%;
+  max-width: 728px;
+  height: var(--ad-h);
+  background: #111128;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.ad-top    { border-bottom: 1px solid #1a1a3a; }
+.ad-bottom { border-top:    1px solid #1a1a3a; margin-top: auto; }
+
+/* ── GAME CONTAINER ─────────────────────────────── */
+#game-container {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  max-width: 540px;
+  overflow: hidden;
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── SCREENS ────────────────────────────────────── */
+.screen {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: rgba(10, 10, 26, 0.88);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+  padding: 24px;
+  text-align: center;
+}
+.screen.active { display: flex; }
+
+/* Title screen */
+.title-text {
+  font-size: clamp(2.8rem, 10vw, 5rem);
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: var(--accent);
+  text-shadow: 0 0 24px var(--accent), 0 0 60px var(--accent2);
+  line-height: 1;
+}
+.title-text span {
+  color: var(--accent2);
+}
+.subtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+}
+.hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+/* Game Over */
+.score-label {
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.big-score {
+  font-size: clamp(3rem, 12vw, 6rem);
+  font-weight: 900;
+  color: var(--accent);
+  text-shadow: 0 0 20px var(--accent);
+  line-height: 1;
+}
+.best-score {
+  font-size: 0.9rem;
+  color: var(--accent2);
+}
+
+/* Buttons */
+.btn-primary {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  padding: 12px 36px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.15s, box-shadow 0.15s;
+  margin-top: 8px;
+}
+.btn-primary:hover, .btn-primary:focus-visible {
+  background: var(--accent);
+  color: var(--bg);
+  box-shadow: 0 0 24px var(--accent);
+  outline: none;
+}
+
+/* ── HUD ────────────────────────────────────────── */
+#hud {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px 16px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+  pointer-events: none;
+}
+#hud.visible { display: flex; }
+
+#hud-score {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--accent);
+  text-shadow: 0 0 10px var(--accent);
+  pointer-events: none;
+}
+
+#btn-pause {
+  pointer-events: all;
+  background: none;
+  border: 1px solid var(--muted);
+  color: var(--muted);
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, color 0.15s;
+}
+#btn-pause:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── RESPONSIVE ─────────────────────────────────── */
+@media (max-height: 500px) {
+  .ad-slot { height: 40px; }
+}
