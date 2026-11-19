@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0a0a1a" />
+  <meta name="description" content="Sky Dash — a free endless runner game. How far can you go?" />
+  <title>Sky Dash</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.png" />
+
+  <!-- ───────────────────────────────────────────────
+       GOOGLE ADSENSE
+       Replace ca-pub-XXXXXXXXXXXXXXXX with your
+       Publisher ID after you are approved.
+       The two ad slots below (banner top + banner
+       bottom) are ready to serve once your site
+       is live and AdSense is configured.
+  ─────────────────────────────────────────────── -->
+  <script async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+    crossorigin="anonymous">
+  </script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- TOP BANNER AD ─────────────────────────────── -->
+  <div class="ad-slot ad-top" aria-label="Advertisement">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="1111111111"
+         data-ad-format="banner"
+         data-full-width-responsive="true">
+    </ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- GAME CONTAINER ─────────────────────────────── -->
+  <main id="game-container">
+    <canvas id="game-canvas"></canvas>
+
+    <!-- SCREENS -->
+    <div id="screen-title" class="screen active">
+      <h1 class="title-text">SKY<span>DASH</span></h1>
+      <p class="subtitle">Dodge the walls. Survive the surge.</p>
+      <button id="btn-start" class="btn-primary">PLAY</button>
+      <p class="hint">Tap / Space / Click to jump &nbsp;•&nbsp; Double-tap for double jump</p>
+    </div>
+
+    <div id="screen-gameover" class="screen">
+      <h2>GAME OVER</h2>
+      <p class="score-label">Score</p>
+      <p id="go-score" class="big-score">0</p>
+      <p id="go-best"  class="best-score">Best: 0</p>
+      <button id="btn-retry" class="btn-primary">TRY AGAIN</button>
+    </div>
+
+    <div id="screen-pause" class="screen">
+      <h2>PAUSED</h2>
+      <button id="btn-resume" class="btn-primary">RESUME</button>
+    </div>
+
+    <!-- HUD (visible during play) -->
+    <div id="hud">
+      <span id="hud-score">0</span>
+      <button id="btn-pause" title="Pause">⏸</button>
+    </div>
+  </main>
+
+  <!-- BOTTOM BANNER AD ───────────────────────────── -->
+  <div class="ad-slot ad-bottom" aria-label="Advertisement">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="2222222222"
+         data-ad-format="banner"
+         data-full-width-responsive="true">
+    </ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <script src="game.js"></script>
+
+  <!-- Register service worker for PWA install -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
